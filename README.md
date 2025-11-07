@@ -1,46 +1,27 @@
-# 🏦 Banco Andino Quinchos
+# Banco Andino – Sistema de Reservas de Quinchos (MVP)
 
-Sistema de reservas internas para quinchos corporativos, desarrollado en **Spring Boot 3** con base de datos **H2 persistente**.  
-El proyecto permite gestionar quinchos, usuarios, reservas y roles de administración.
+Prototipo funcional para gestionar **quinchos**, **usuarios** y **reservas** con validación de **no solapamiento** por quincho.  
+Arquitectura **monolítica por capas** (Controller / Service / Repository) con **JPA** y **H2**.
 
-## ⚙️ Tecnologías utilizadas
-- Java 21  
-- Spring Boot 3.3.3  
-- Spring Web  
-- Spring Data JPA  
-- Lombok  
-- H2 Database (modo persistente)  
-- Gradle
+---
 
-## 🧩 Estructura del proyecto
-```
-cl.banco_andino_quinchos/
- ├── baq/
- │   ├── controller/
- │   │   ├── dto/
- │   │   │   ├── request/
- │   │   │   └── response/
- │   ├── repository/
- │   │   └── jpa/
- │   ├── service/
- │   └── model/
- ├── resources/
- │   ├── application.properties
- │   └── static / templates (si aplica)
-```
+## ✨ Alcance del MVP
 
-## 💾 Configuración de base de datos
-H2 persistente en archivo local:
+**Incluye**
+- Entidades JPA en `Repository.JPA`:
+  - `UsuarioJPA (id, nombre, correo, rol, activo, password)`
+  - `QuinchoJPA (id, nombre, capacidad, disponible, ubicacion)`
+  - `ReservaJPA (id, fechaInicio, fechaFin, estado, aprobado, id_quincho*, id_usuario*)`
+  - `BitacoraJPA (id, usuario, accion, fecha)` *(solo entidad, sin uso aún)*
+- Reglas de negocio:
+  - **No solapamiento** de reservas por quincho (consulta en `ReservaRepository`).
+- Configuración de base de datos **H2** (memoria o archivo).
+- Consola H2 habilitada.
 
-```
-jdbc:h2:file:./data/baqdb
-```
+**Fuera de alcance (por ahora)**
+- Integración de **Bitácora** (servicio/controlador).
+- Autenticación real (JWT/Spring Security).
+- Auditoría, notificaciones, paginación y búsquedas avanzadas.
+- Pruebas automatizadas extensivas, Docker/CI.
 
-Consola: [http://localhost:8081/h2-console](http://localhost:8081/h2-console)
-
-| Campo | Valor |
-|--------|-------|
-| Driver | org.h2.Driver |
-| URL | jdbc:h2:file:./data/baqdb |
-| Usuario | root |
-| Password | *system* |
+> Nota: se prioriza **flujo funcional** y **estructura compatible** con las vistas y diagramas (4+1 y UML).
