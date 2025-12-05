@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis reservas - Banco Andino Quinchos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header class="header">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h1>Mis reservas</h1>
+
+        <div>
+            <span th:text="${session.usuarioNombre}">Usuario</span>
+            <span th:text="'(' + ${session.usuarioRol} + ')'" style="margin-left:4px;"></span>
+            &nbsp;|&nbsp;
+            <a th:href="@{/logout}" class="link">Cerrar sesión</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+
+        <a th:href="@{/home}" class="link">&larr; Volver al inicio</a>
+
+        <h2 style="margin: 12px 0;">Reservas creadas por mí</h2>
+
+        <p th:if="${#lists.isEmpty(reservas)}">
+            No tienes reservas registradas.
+        </p>
+
+        <table th:if="${!#lists.isEmpty(reservas)}" style="margin-top: 12px;">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Quincho</th>
+                <th>Fechas</th>
+                <th>Estado</th>
+                <th>Motivo</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="r : ${reservas}">
+                <td th:text="${r.id}"></td>
+
+                <td th:text="${r.quincho.nombre}"></td>
+
+                <td>
+                    <div>
+                        <span class="section-title">Inicio:</span>
+                        <span th:text="${r.fechaInicio}"></span>
+                    </div>
+                    <div>
+                        <span class="section-title">Término:</span>
+                        <span th:text="${r.fechaFin}"></span>
+                    </div>
+                </td>
+
+                <!-- ESTADO -->
+                <td>
+                    <span class="badge"
+                          th:classappend="${
+                                r.estado == 'PENDIENTE' ? ' badge-pendiente' :
+                                (r.estado == 'APROBADA' ? ' badge-aprobada' :
+                                (r.estado == 'RECHAZADA' ? ' badge-rechazada' :
+                                ' badge-cancelada'))
+                          }"
+                          th:text="${r.estado}">
+                    </span>
+                </td>
+
+                <td th:text="${r.motivo}"></td>
+
+                <!-- ACCIONES -->
+                <td>
+                    <form th:if="${r.estado == 'PENDIENTE' or r.estado == 'APROBADA'}"
+                          th:action="@{'/reservas/mis/' + ${r.id} + '/cancelar'}"
+                          method="post"
+                          style="display:inline;">
+                        <button type="submit" class="btn btn-warning btn-sm">
+                            Cancelar
+                        </button>
+                    </form>
+
+                    <span th:if="${r.estado != 'PENDIENTE' and r.estado != 'APROBADA'}"
+                          style="font-size:0.8rem; color:#6b7280;">
+                        Sin acciones
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

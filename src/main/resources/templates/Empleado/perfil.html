@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Perfil</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<header class="header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Mi Perfil</h1>
+        <div>
+            <span th:text="${session.usuarioNombre}">Usuario</span>
+            <span th:text="'(' + ${session.usuarioRol} + ')'" style="margin-left: 4px;"></span>
+            &nbsp;|&nbsp;
+            <a th:href="@{/logout}" class="link">Cerrar sesión</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card main-card">
+
+        <a th:href="@{/home}" class="link">&larr; Volver al inicio</a>
+
+        <h2 style="margin-bottom: 16px;">Información del usuario</h2>
+
+        <!-- MENSAJE VERDE DE ÉXITO -->
+        <div th:if="${msg}"
+             style="background: #d1fae5;
+                    color: #065f46;
+                    padding: 12px;
+                    margin-bottom: 16px;
+                    border-radius: 8px;
+                    border: 1px solid #a7f3d0;">
+            ✔ <span th:text="${msg}"></span>
+        </div>
+
+        <form th:action="@{/perfil}" method="post">
+
+            <!-- NOMBRE -->
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" name="nombre" th:value="${usuario.nombre}" required>
+            </div>
+
+            <!-- CORREO -->
+            <div class="form-group">
+                <label>Correo</label>
+                <input type="text" readonly th:value="${usuario.correo}">
+            </div>
+
+            <!-- CONTRASEÑA -->
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="text" name="password" th:value="${usuario.password}" required>
+            </div>
+
+            <!-- ROL -->
+            <div class="form-group">
+                <label>Rol</label>
+                <input type="text" readonly th:value="${usuario.rol}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

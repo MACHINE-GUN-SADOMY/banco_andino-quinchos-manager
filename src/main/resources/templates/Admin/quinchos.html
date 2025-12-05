@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de quinchos - Admin</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Gestión de quinchos</h1>
+        <div>
+            <span th:text="${session.usuarioNombre}">Usuario</span>
+            <span th:text="'(' + ${session.usuarioRol} + ')'" style="margin-left: 4px;"></span>
+            &nbsp;|&nbsp;
+            <a th:href="@{/logout}" class="link">Cerrar sesión</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+
+        <a th:href="@{/home}" class="link">&larr; Volver al inicio</a>
+        <h2 style="margin: 12px 0;">Quinchos registrados</h2>
+
+        <a th:href="@{/admin/quinchos/nuevo}" class="btn btn-primary" style="margin-bottom: 12px;">
+            Nuevo quincho
+        </a>
+
+        <!-- Mensajes de feedback -->
+        <p th:if="${msg}" style="color: green; margin-top: 8px;" th:text="${msg}"></p>
+        <p th:if="${error}" style="color: red; margin-top: 8px;" th:text="${error}"></p>
+
+        <!-- Si no hay quinchos -->
+        <p th:if="${#lists.isEmpty(quinchos)}">
+            No hay quinchos registrados.
+        </p>
+
+        <!-- Tabla de quinchos -->
+        <table th:if="${!#lists.isEmpty(quinchos)}" style="width: 100%; border-collapse: collapse; margin-top: 12px;">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Capacidad</th>
+                <th>Disponibilidad</th>
+                <th>Ubicación</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="q : ${quinchos}">
+                <td th:text="${q.id}"></td>
+                <td th:text="${q.nombre}"></td>
+                <td th:text="${q.capacidad}"></td>
+
+                <!-- Badge de disponibilidad -->
+                <td>
+                    <span class="badge"
+                          th:classappend="${q.disponibilidad} ? ' badge-aprobada' : ' badge-rechazada'"
+                          th:text="${q.disponibilidad} ? 'Disponible' : 'No disponible'">
+                    </span>
+                </td>
+
+                <td th:text="${q.ubicacion != null ? q.ubicacion : 'Sin ubicación'}"></td>
+
+                <!-- ACCIONES -->
+                <td>
+                    <form th:action="@{'/admin/quinchos/' + ${q.id} + '/estado'}"
+                          method="post"
+                          style="display:inline; margin-right:6px;">
+                        <input type="hidden" name="activo" th:value="${!q.disponibilidad}">
+                        <button type="submit"
+                                class="btn btn-warning"
+                                th:text="${q.disponibilidad} ? 'Marcar no disponible' : 'Marcar disponible'">
+                        </button>
+                    </form>
+
+                    <!-- EDITAR -->
+                    <a th:href="@{'/admin/quinchos/' + ${q.id} + '/editar'}"
+                       class="btn btn-secondary"
+                       style="margin-right:6px;">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>

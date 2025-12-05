@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar quincho - Admin</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Editar quincho</h1>
+        <div>
+            <span th:text="${session.usuarioNombre}">Usuario</span>
+            <span th:text="'(' + ${session.usuarioRol} + ')'" style="margin-left: 4px;"></span>
+            &nbsp;|&nbsp;
+            <a th:href="@{/logout}" class="link">Cerrar sesión</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+
+        <a th:href="@{/admin/quinchos}" class="link">Volver al listado</a>
+
+        <h2 style="margin: 12px 0;">Editar quincho</h2>
+        <p class="text-muted">
+            Modifica solo los datos básicos del quincho. La ubicación se muestra como referencia
+            y la disponibilidad se gestiona desde el listado.
+        </p>
+
+        <!-- Mensajes flash -->
+        <p th:if="${msg}" class="alert alert-success" th:text="${msg}"></p>
+        <p th:if="${error}" class="alert alert-error" th:text="${error}"></p>
+
+        <form th:action="@{'/admin/quinchos/editar/' + ${quincho.id}}" method="post">
+
+            <div class="form-group">
+                <label for="nombre">Nombre del quincho</label>
+                <input type="text"
+                       id="nombre"
+                       name="nombre"
+                       th:value="${quincho.nombre}"
+                       placeholder="Ej: Quincho Principal"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="capacidad">Capacidad (personas)</label>
+                <input type="number"
+                       id="capacidad"
+                       name="capacidad"
+                       min="1"
+                       th:value="${quincho.capacidad}"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="ubicacion">Ubicación</label>
+                <input type="text"
+                       id="ubicacion"
+                       name="ubicacion"
+                th:value="${quincho.ubicacion}"
+                placeholder="Ej: Terraza Sur">
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 16px;">
+
+                <!-- GUARDAR CAMBIOS -->
+                <button type="submit" class="btn btn-primary">
+                    Guardar cambios
+                </button>
+
+                <!-- ELIMINAR QUINCHO -->
+                <button type="submit"
+                        class="btn btn-danger"
+                        th:formaction="@{'/admin/quinchos/' + ${quincho.id} + '/eliminar'}"
+                        formmethod="post"
+                        onclick="return confirm('¿Seguro que deseas eliminar este quincho? Si tiene reservas activas, NO se eliminará.');">
+                    Eliminar
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

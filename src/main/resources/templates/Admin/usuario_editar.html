@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<header class="header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Editar Usuario</h1>
+        <div>
+            <span th:text="${session.usuarioNombre}">Usuario</span>
+            <span th:text="'(' + ${session.usuarioRol} + ')'" style="margin-left: 4px;"></span>
+            &nbsp;|&nbsp;
+            <a th:href="@{/logout}" class="link">Cerrar sesión</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+
+        <a th:href="@{/admin/usuarios}" class="link">&larr; Volver</a>
+
+        <h2 style="margin: 12px 0;">Editar Usuario</h2>
+
+        <form th:action="@{'/admin/usuarios/editar/' + ${usuario.id}}" method="post">
+
+            <!-- NOMBRE DEL USUARIO -->
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text"
+                       name="nombre"
+                       th:value="${usuario.nombre}"
+                       required>
+            </div>
+
+            <!-- CORREO BLOQUEADO POR AHORA -->
+            <div class="form-group">
+                <label>Correo institucional</label>
+                <input type="email"
+                       name="correo"
+                       th:value="${usuario.correo}"
+                       readonly
+                       style="background: #e5e7eb; cursor:not-allowed;">
+            </div>
+
+            <!-- ROLE BLOQUEADO -->
+            <div class="form-group">
+                <label>Rol</label>
+                <input type="text"
+                       name="rol"
+                       th:value="${usuario.rol}"
+                       readonly
+                       style="background: #e5e7eb; cursor:not-allowed;">
+            </div>
+
+            <!-- CONTRASE;A -->
+            <div class="form-group">
+                <label>Nueva contraseña</label>
+                <input type="password"
+                       name="password"
+                       placeholder="Dejar vacío para no cambiar">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+:root {
+    /* COLORES PRINCIPALES */
+    --color-azul-fondo: #020617;
+    --color-azul-header: #0056d6;
+    --color-azul-header-2: #003b8f;
+    --color-primario: #0056d6;
+    --color-primario-dark: #0041a3;
+    --color-secundario: #e5e7eb;
+    --color-warning: #f59e0b;
+    --color-danger: #dc2626;
+    --color-success: #16a34a;
+
+    /* COLOR DE TARJETAS / TEXTOS */
+    --color-card: #ffffff;
+    --color-texto: #111827;
+    --color-texto-suave: #6b7280;
+    --color-borde: #e5e7eb;
+
+    /* ESTILOS GENERALES */
+    --radius-card: 16px;
+    --radius-btn: 999px;
+    --shadow-suave: 0 18px 40px rgba(15, 23, 42, 0.22);
+    --transition-base: 0.18s ease-out;
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* FONDO GENERAL OSCURO */
+body {
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+    color: var(--color-texto);
+    background:
+            radial-gradient(circle at 0% 0%, #0b1120 0, #020617 45%, #000 100%);
+}
+
+/* HEADER SUPERIOR */
+.header {
+    background: linear-gradient(90deg,
+    var(--color-azul-header),
+    var(--color-azul-header-2)
+    );
+    color: #fff;
+    padding: 16px 40px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.45);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.header a.link {
+    color: #e5e7eb;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.header a.link:hover {
+    text-decoration: underline;
+}
+
+/* CONTENEDOR CENTRAL */
+.container {
+    max-width: 1100px;
+    margin: 32px auto 40px auto;
+    padding: 0 16px;
+}
+
+/* TARJETAS DE CONTENIDO */
+.card {
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    padding: 24px 28px;
+    box-shadow: var(--shadow-suave);
+}
+
+/* LOGIN PAGE */
+body.login-page {
+    background:
+            radial-gradient(circle at 0% 0%, #0b1120 0, #020617 45%, #000 100%);
+}
+
+.main-login {
+    min-height: calc(100vh - 72px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    width: 420px;
+    max-width: 100%;
+}
+
+/* FORMULARIOS */
+.form-group {
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-texto);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="datetime-local"],
+select,
+textarea {
+    border-radius: 10px;
+    border: 1px solid var(--color-borde);
+    padding: 10px 12px;
+    font-size: 0.93rem;
+    outline: none;
+    transition: border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    background-color var(--transition-base);
+    background-color: #f9fafb;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.35);
+    background-color: #ffffff;
+}
+
+/* BOTONES */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-btn);
+    border: none;
+    padding: 8px 18px;
+    font-size: 0.93rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base),
+    color var(--transition-base);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--color-primario);
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+}
+
+.btn-primary:hover {
+    background: var(--color-primario-dark);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+.btn-secondary:hover {
+    background: #d1d5db;
+}
+
+.btn-warning {
+    background: var(--color-warning);
+    color: #111827;
+}
+
+.btn-warning:hover {
+    background: #d97706;
+}
+
+/* LINKS */
+.link {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* TABLAS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 0.9rem;
+}
+
+th,
+td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    background: #f3f4f6;
+    color: #374151;
+    font-weight: 600;
+    font-size: 0.86rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* BADGE DE ESTADO */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.badge-aprobada {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.badge-pendiente {
+    background-color: #FFF4CC;
+    color: #B58105;
+}
+
+.badge-rechazada {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.badge-cancelada {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+/* UTILIDADES */
+.text-right { text-align: right; }
+
+.mt-1 { margin-top: 4px; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }
+.mb-2 { margin-bottom: 8px; }
+
+h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* FOOTER LOGIN */
+.login-footer {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: var(--color-texto-suave);
+}
+
+/* INFO DE CAPACIDAD .. */
+.info-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-texto);
+}
+
+.info-field {
+    margin: 2px 0 0 0;
+    font-size: 0.9rem;
+    color: var(--color-texto-suave);
+}
+
+.main-card {
+    padding: 28px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.subcard {
+    background: #fff;
+    padding: 22px 26px;
+    border-radius: 18px;
+    margin-top: 24px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    border: 1px solid #f0f0f0;
+}
+
+.subcard-text {
+    margin: 6px 0 16px 0;
+    color: var(--color-texto-suave);
+    line-height: 1.45;
+}
+
+.subcard-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}

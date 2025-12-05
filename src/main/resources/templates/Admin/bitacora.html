@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bitácora de Banco Andino</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header class="header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Bitácora de Banco Andino</h1>
+        <div>
+            <span th:text="${session.usuarioNombre}">Usuario</span>
+            <span th:text="'(' + ${session.usuarioRol} + ')'" style="margin-left: 4px;"></span>
+            &nbsp;|&nbsp;
+            <a th:href="@{/logout}" class="link">Cerrar sesión</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+
+        <a th:href="@{/home}" class="link">&larr; Volver al inicio</a>
+        <h2 style="margin: 12px 0;">Registro de acciones</h2>
+
+        <div style="margin-top: 14px; display: flex; gap: 12px;">
+            <a th:href="@{/admin/bitacora/nuevo}" class="btn btn-warning">
+                Registrar nueva acción
+            </a>
+        </div>
+
+        <!-- MENSAJES -->
+        <p th:if="${msg}" style="color:green; margin-top: 4px;" th:text="${msg}"></p>
+        <p th:if="${error}" style="color:red; margin-top: 4px;" th:text="${error}"></p>
+
+        <!-- FORMULARIO: REGISTRAR ACCIÓN MANUAL -->
+        <!-- LISTADO DE BITACORA -->
+        <h3 class="mt-4">Registros recientes</h3>
+
+        <p th:if="${#lists.isEmpty(registros)}" style="margin-top: 8px;">
+            No hay registros en la bitácora.
+        </p>
+
+        <table th:if="${!#lists.isEmpty(registros)}" style="margin-top: 12px;">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Acción</th>
+                <th>Detalle</th>
+                <th>Usuario</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="r : ${registros}">
+                <td th:text="${r.id}"></td>
+                <td th:text="${#temporals.format(r.fecha, 'dd-MM-yyyy HH:mm')}"></td>
+                <td th:text="${r.accion}"></td>
+                <td th:text="${r.detalle}"></td>
+                <td th:text="${r.usuario != null ? r.usuario.nombre : 'Sistema'}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

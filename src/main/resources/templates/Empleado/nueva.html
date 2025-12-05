@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva reserva de quincho</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Nueva reserva de quincho</h1>
+        <div>
+            <span th:text="${session.usuarioNombre}">Usuario</span>
+            <span th:text="'(' + ${session.usuarioRol} + ')'" style="margin-left: 4px;"></span>
+            &nbsp;|&nbsp;
+            <a th:href="@{/logout}" class="link">Cerrar sesión</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card main-card">
+        <a th:href="@{/home}" class="link">&larr; Volver al inicio</a>
+
+        <h2 style="margin: 12px 0;">Crear reserva</h2>
+
+        <!-- BLOQUE DE ERROR SI FALLA LA CREACIÓN -->
+        <div th:if="${error}"
+             style="background:#fee2e2;
+                    color:#991b1b;
+                    padding:12px;
+                    margin-bottom:16px;
+                    border-radius:8px;
+                    border:1px solid #fecaca;">
+            ⚠ <span th:text="${error}"></span>
+        </div>
+
+        <!-- 1) FORM GET: SELECCIONAR QUINCHO (AUTO-SUBMIT AL CAMBIAR) -->
+        <form th:action="@{/reservas/nueva}" method="get" style="margin-bottom: 16px;">
+            <div class="form-group">
+                <label for="idQuinchoSel">Quincho</label>
+                <select id="idQuinchoSel"
+                        name="idQuinchoSel"
+                        required
+                        onchange="this.form.submit()">
+                    <option value="" disabled
+                            th:selected="${idQuinchoSel == null}">
+                        Selecciona un quincho
+                    </option>
+
+                    <option th:each="q : ${quinchos}"
+                            th:value="${q.id}"
+                            th:text="${q.nombre}"
+                            th:selected="${idQuinchoSel != null and q.id == idQuinchoSel}">
+                    </option>
+                </select>
+            </div>
+        </form>
+
+        <!-- 2) FORM POST: CREAR RESERVA CON EL QUINCHO YA ELEGIDO -->
+        <form th:action="@{/reservas/nueva}" method="post">
+
+            <!-- idQuincho se envía escondido, usando el último seleccionado -->
+            <input type="hidden" name="idQuincho" th:value="${idQuinchoSel}"/>
+
+            <div class="form-group">
+                <label>Ubicación del quincho</label>
+                <input type="text" readonly
+                       th:value="${quinchoSeleccionado != null ? quinchoSeleccionado.ubicacion : ''}">
+            </div>
+
+            <div class="form-group">
+                <label>Capacidad</label>
+                <input type="number" readonly
+                       th:value="${quinchoSeleccionado != null ? quinchoSeleccionado.capacidad : ''}">
+            </div>
+
+            <div class="form-group">
+                <label for="fechaInicio">Fecha y hora de inicio</label>
+                <input type="datetime-local" id="fechaInicio" name="fechaInicio" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fechaFin">Fecha y hora de término</label>
+                <input type="datetime-local" id="fechaFin" name="fechaFin" required>
+            </div>
+
+            <div class="form-group">
+                <label for="motivo">Motivo (opcional)</label>
+                <textarea id="motivo" name="motivo" rows="3"
+                          placeholder="Describe brevemente el motivo del uso del quincho..."></textarea>
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary"
+                    th:disabled="${idQuinchoSel == null}">
+                Crear reserva
+            </button>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

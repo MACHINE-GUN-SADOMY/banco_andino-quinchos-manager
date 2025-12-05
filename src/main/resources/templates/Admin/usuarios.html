@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Administración de Usuarios</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<header class="header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Administración de Usuarios</h1>
+        <div>
+            <span th:text="${session.usuarioNombre}">Usuario</span>
+            <span th:text="'(' + ${session.usuarioRol} + ')'" style="margin-left: 4px;"></span>
+            &nbsp;|&nbsp;
+            <a th:href="@{/logout}" class="link">Cerrar sesión</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+
+        <a th:href="@{/home}" class="link">&larr; Volver al inicio</a>
+        <h2 style="margin: 12px 0;">Usuarios registrados</h2>
+
+        <!-- NUEVO USUARIO -->
+        <a th:href="@{/admin/usuarios/nuevo}" class="btn btn-primary">Nuevo usuario</a>
+
+        <p th:if="${msg}" style="color:green;" th:text="${msg}"></p>
+        <p th:if="${error}" style="color:red;" th:text="${error}"></p>
+
+        <table th:if="${!#lists.isEmpty(usuarios)}">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="u : ${usuarios}">
+                <td th:text="${u.id}"></td>
+                <td th:text="${u.nombre}"></td>
+                <td th:text="${u.correo}"></td>
+                <td th:text="${u.rol}"></td>
+
+                <td>
+                    <span th:text="${u.activo ? 'Activo' : 'Inactivo'}"
+                          th:classappend="${u.activo} ? ' badge-aprobada' : ' badge-rechazada'"
+                          class="badge">
+                    </span>
+                </td>
+
+                <td>
+                    <!-- ACTIVAR Y DESACTIVAR -->
+                    <form th:action="@{'/admin/usuarios/' + ${u.id} + '/estado'}"
+                          method="post"
+                          style="display:inline;">
+                        <input type="hidden" name="activo" th:value="${!u.activo}">
+                        <button type="submit"
+                                th:text="${u.activo ? 'Desactivar' : 'Activar'}"
+                                class="btn btn-warning">
+                        </button>
+                    </form>
+
+                    <!-- EDITAR USUARIO -->
+                    <a th:href="@{'/admin/usuarios/editar/' + ${u.id}}" class="btn btn-secondary">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p th:if="${#lists.isEmpty(usuarios)}">No hay usuarios registrados.</p>
+
+    </div>
+</div>
+
+</body>
+</html>

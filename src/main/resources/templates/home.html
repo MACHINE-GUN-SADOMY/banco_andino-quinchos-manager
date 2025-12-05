@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Banco Andino Quinchos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<header class="header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Banco Andino - Reservas de Quinchos</h1>
+        <div>
+            <span th:text="${nombre}">Usuario</span>
+            <span th:text="'('+${rol}+')'" style="margin-left: 4px;"></span>
+            &nbsp;|&nbsp;
+            <a th:href="@{/logout}" class="link">Cerrar sesión</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="card main-card">
+        <h2>Bienvenido(a) <span th:text="${nombre}">Usuario</span></h2>
+        <p style="margin: 8px 0 20px 0; color:#6b7280;">
+            Desde este panel puedes gestionar tus reservas de quinchos.
+        </p>
+
+        <!-- BITÁCORA ADMIN -->
+        <div class="subcard" th:if="${rol == 'ADMIN'}">
+            <h3>Bitácora de Banco Andino</h3>
+            <p class="subcard-text">
+                Aquí puedes revisar el registro completo de acciones realizadas en la gestión de quinchos y usuarios.
+            </p>
+            <a th:href="@{/admin/bitacora}" class="btn btn-warning">Ver bitácora</a>
+        </div>
+
+        <!-- EMPLEADO -->
+        <div class="subcard" th:if="${rol != 'ADMIN'}">
+            <h3>Agendamiento de Quinchos</h3>
+            <p class="subcard-text">Acciones rápidas disponibles para empleados</p>
+            <div class="subcard-actions">
+                <a th:href="@{/reservas/nueva}" class="btn btn-primary">Nueva reserva</a>
+                <a th:href="@{/reservas/mis}" class="btn btn-secondary">Mis reservas</a>
+            </div>
+        </div>
+
+        <!-- PANEL ADMIN -->
+        <div class="subcard" th:if="${rol == 'ADMIN'}">
+            <h3>Panel administrador</h3>
+            <p class="subcard-text">Gestión de Reservas, Quinchos y Usuarios</p>
+
+            <div class="subcard-actions">
+                <a th:href="@{/admin/reservas}" class="btn btn-primary">Gestión de reservas</a>
+                <a th:href="@{/admin/quinchos}" class="btn btn-secondary">Gestión de quinchos</a>
+                <a th:href="@{/admin/usuarios}" class="btn btn-warning">Gestión de usuarios</a>
+            </div>
+        </div>
+
+        <!-- PERFIL -->
+        <div class="subcard">
+            <h3>Mi perfil</h3>
+            <p class="subcard-text">
+                Administra la información asociada a tu cuenta de Banco Andino.
+            </p>
+            <div class="subcard-actions">
+                <a th:href="@{/perfil}" class="btn btn-primary">Modificar información del perfil</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

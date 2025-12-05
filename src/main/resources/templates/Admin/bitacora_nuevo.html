@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar acción en bitácora</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body class="login-page">
+
+<header class="header">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h1>Registrar acción en bitácora</h1>
+        <div>
+            <span th:text="${session.usuarioNombre}">Usuario</span>
+            <span th:text="'(' + ${session.usuarioRol} + ')'" style="margin-left:4px;"></span>
+            &nbsp;|&nbsp;
+            <a th:href="@{/logout}" class="link">Cerrar sesión</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card" style="max-width:640px; margin:auto;">
+
+        <a th:href="@{/admin/bitacora}" class="link">&larr; Volver a la bitácora</a>
+        <h2 style="margin:12px 0;">Nueva acción manual</h2>
+
+        <form th:action="@{/admin/bitacora/nuevo}" method="post">
+
+            <div class="form-group">
+                <label for="tipoAccion">Tipo de acción</label>
+                <input type="text"
+                       id="tipoAccion"
+                       name="tipoAccion"
+                       placeholder="Ej: MODIFICAR_QUINCHO, ELIMINAR_QUINCHO"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="accion">Acción</label>
+                <input type="text"
+                       id="accion"
+                       name="accion"
+                       placeholder="Ej: Se modificó el quincho principal"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="detalle">Detalle (opcional)</label>
+                <textarea id="detalle"
+                          name="detalle"
+                          rows="3"
+                          placeholder="Información adicional del cambio..."></textarea>
+            </div>
+
+            <p style="font-size:0.85rem; color:var(--color-texto-suave); margin-bottom:12px;">
+                El registro quedará asociado al usuario actualmente autenticado.
+            </p>
+
+            <button type="submit" class="btn btn-primary">
+                Guardar en bitácora
+            </button>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
