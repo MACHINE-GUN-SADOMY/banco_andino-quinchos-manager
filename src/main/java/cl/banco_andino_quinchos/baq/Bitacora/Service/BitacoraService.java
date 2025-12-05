@@ -1,6 +1,5 @@
 package cl.banco_andino_quinchos.baq.Bitacora.Service;
 
-<<<<<<< HEAD
 import cl.banco_andino_quinchos.baq.Bitacora.Repository.BitacoraJpaRepository;
 import cl.banco_andino_quinchos.baq.Bitacora.Repository.JPA.BitacoraJPA;
 import cl.banco_andino_quinchos.baq.Usuario.Repository.JPA.UsuarioJPA;
@@ -52,7 +51,4 @@ public class BitacoraService {
     public List<BitacoraJPA> listarPorUsuario(Integer idUsuario) {
         return bitacoraRepository.findByUsuario_Id(idUsuario);
     }
-=======
-public class BitacoraService {
->>>>>>> 0bcdbe79853ecefe228c945a5352bf4ecaff9988
 }

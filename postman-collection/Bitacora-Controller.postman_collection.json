@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "e689f5bf-b292-4058-97db-2292dd66f546",
+		"name": "Bitacora-Controller",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44411688",
+		"_collection_link": "https://nigger-5787.postman.co/workspace/Banco-Andino~3be4b7b2-441d-4b6f-a9bc-882d9695f17d/collection/44411688-e689f5bf-b292-4058-97db-2292dd66f546?action=share&source=collection_link&creator=44411688"
+	},
+	"item": [
+		{
+			"name": "Listar todas las acciones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/bitacora",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"bitacora"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Accion por Usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/bitacora/usuario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"bitacora",
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todas las Acciones",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/bitacora",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"bitacora"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

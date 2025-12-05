@@ -24,7 +24,6 @@
 
         <h2 style="margin: 12px 0;">Crear reserva</h2>
 
-        <!-- BLOQUE DE ERROR SI FALLA LA CREACIÓN -->
         <div th:if="${error}"
              style="background:#fee2e2;
                     color:#991b1b;
@@ -35,7 +34,6 @@
             ⚠ <span th:text="${error}"></span>
         </div>
 
-        <!-- 1) FORM GET: SELECCIONAR QUINCHO (AUTO-SUBMIT AL CAMBIAR) -->
         <form th:action="@{/reservas/nueva}" method="get" style="margin-bottom: 16px;">
             <div class="form-group">
                 <label for="idQuinchoSel">Quincho</label>
@@ -57,10 +55,8 @@
             </div>
         </form>
 
-        <!-- 2) FORM POST: CREAR RESERVA CON EL QUINCHO YA ELEGIDO -->
         <form th:action="@{/reservas/nueva}" method="post">
 
-            <!-- idQuincho se envía escondido, usando el último seleccionado -->
             <input type="hidden" name="idQuincho" th:value="${idQuinchoSel}"/>
 
             <div class="form-group">

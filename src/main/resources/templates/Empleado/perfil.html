@@ -27,7 +27,6 @@
 
         <h2 style="margin-bottom: 16px;">Información del usuario</h2>
 
-        <!-- MENSAJE VERDE DE ÉXITO -->
         <div th:if="${msg}"
              style="background: #d1fae5;
                     color: #065f46;
@@ -40,25 +39,21 @@
 
         <form th:action="@{/perfil}" method="post">
 
-            <!-- NOMBRE -->
             <div class="form-group">
                 <label>Nombre</label>
                 <input type="text" name="nombre" th:value="${usuario.nombre}" required>
             </div>
 
-            <!-- CORREO -->
             <div class="form-group">
                 <label>Correo</label>
                 <input type="text" readonly th:value="${usuario.correo}">
             </div>
 
-            <!-- CONTRASEÑA -->
             <div class="form-group">
                 <label>Contraseña</label>
                 <input type="text" name="password" th:value="${usuario.password}" required>
             </div>
 
-            <!-- ROL -->
             <div class="form-group">
                 <label>Rol</label>
                 <input type="text" readonly th:value="${usuario.rol}">

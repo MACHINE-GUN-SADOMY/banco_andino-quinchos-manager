@@ -28,7 +28,6 @@
             Desde este panel puedes gestionar tus reservas de quinchos.
         </p>
 
-        <!-- BITÁCORA ADMIN -->
         <div class="subcard" th:if="${rol == 'ADMIN'}">
             <h3>Bitácora de Banco Andino</h3>
             <p class="subcard-text">
@@ -37,7 +36,6 @@
             <a th:href="@{/admin/bitacora}" class="btn btn-warning">Ver bitácora</a>
         </div>
 
-        <!-- EMPLEADO -->
         <div class="subcard" th:if="${rol != 'ADMIN'}">
             <h3>Agendamiento de Quinchos</h3>
             <p class="subcard-text">Acciones rápidas disponibles para empleados</p>
@@ -47,7 +45,6 @@
             </div>
         </div>
 
-        <!-- PANEL ADMIN -->
         <div class="subcard" th:if="${rol == 'ADMIN'}">
             <h3>Panel administrador</h3>
             <p class="subcard-text">Gestión de Reservas, Quinchos y Usuarios</p>
@@ -59,7 +56,6 @@
             </div>
         </div>
 
-        <!-- PERFIL -->
         <div class="subcard">
             <h3>Mi perfil</h3>
             <p class="subcard-text">

@@ -28,7 +28,6 @@
 
         <form th:action="@{'/admin/usuarios/editar/' + ${usuario.id}}" method="post">
 
-            <!-- NOMBRE DEL USUARIO -->
             <div class="form-group">
                 <label>Nombre</label>
                 <input type="text"
@@ -37,7 +36,6 @@
                        required>
             </div>
 
-            <!-- CORREO BLOQUEADO POR AHORA -->
             <div class="form-group">
                 <label>Correo institucional</label>
                 <input type="email"
@@ -47,7 +45,6 @@
                        style="background: #e5e7eb; cursor:not-allowed;">
             </div>
 
-            <!-- ROLE BLOQUEADO -->
             <div class="form-group">
                 <label>Rol</label>
                 <input type="text"
@@ -57,7 +54,6 @@
                        style="background: #e5e7eb; cursor:not-allowed;">
             </div>
 
-            <!-- CONTRASE;A -->
             <div class="form-group">
                 <label>Nueva contraseña</label>
                 <input type="password"

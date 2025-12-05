@@ -29,7 +29,6 @@
             y la disponibilidad se gestiona desde el listado.
         </p>
 
-        <!-- Mensajes flash -->
         <p th:if="${msg}" class="alert alert-success" th:text="${msg}"></p>
         <p th:if="${error}" class="alert alert-error" th:text="${error}"></p>
 
@@ -66,12 +65,10 @@
 
             <div style="display: flex; gap: 10px; margin-top: 16px;">
 
-                <!-- GUARDAR CAMBIOS -->
                 <button type="submit" class="btn btn-primary">
                     Guardar cambios
                 </button>
 
-                <!-- ELIMINAR QUINCHO -->
                 <button type="submit"
                         class="btn btn-danger"
                         th:formaction="@{'/admin/quinchos/' + ${quincho.id} + '/eliminar'}"

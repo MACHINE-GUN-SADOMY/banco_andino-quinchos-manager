@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "200af0cd-a25c-4092-a17e-7cf48dcbc744",
+		"name": "Reserva-Controller",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44411688",
+		"_collection_link": "https://nigger-5787.postman.co/workspace/Banco-Andino~3be4b7b2-441d-4b6f-a9bc-882d9695f17d/collection/44411688-200af0cd-a25c-4092-a17e-7cf48dcbc744?action=share&source=collection_link&creator=44411688"
+	},
+	"item": [
+		{
+			"name": "Listar Todas Reservas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/reservas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"reservas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Reserva Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/reservas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"reservas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Reserva Usuario Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/reservas/usuario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"reservas",
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Reserva por Quincho Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/reservas/quincho/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"reservas",
+						"quincho",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Reserva",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/reservas?idUsuario=1&idQuincho=1&fechaInicio=2025-11-21T13:00:00&fechaFin=2025-11-21T15:00:00&motivo=Asado de equipo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"reservas"
+					],
+					"query": [
+						{
+							"key": "idUsuario",
+							"value": "1"
+						},
+						{
+							"key": "idQuincho",
+							"value": "1"
+						},
+						{
+							"key": "fechaInicio",
+							"value": "2025-11-21T13:00:00"
+						},
+						{
+							"key": "fechaFin",
+							"value": "2025-11-21T15:00:00"
+						},
+						{
+							"key": "motivo",
+							"value": "Asado de equipo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cambiar Estado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/reservas/1/estado?nuevoEstado=APROBADA&aprobado=true&idAdmin=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"reservas",
+						"1",
+						"estado"
+					],
+					"query": [
+						{
+							"key": "nuevoEstado",
+							"value": "APROBADA"
+						},
+						{
+							"key": "aprobado",
+							"value": "true"
+						},
+						{
+							"key": "idAdmin",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancelar Reserva",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/reservas/33/cancelar?idUsuario=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"reservas",
+						"33",
+						"cancelar"
+					],
+					"query": [
+						{
+							"key": "idUsuario",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar Usuario por Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Editado\",\r\n  \"correo\": \"juan@andino.cl\",\r\n  \"rol\": \"ADMIN\",\r\n  \"activo\": true,\r\n  \"password\": \"abcd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/usuarios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Usuario por Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Editado\",\r\n  \"correo\": \"juan@andino.cl\",\r\n  \"rol\": \"ADMIN\",\r\n  \"activo\": true,\r\n  \"password\": \"abcd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/usuarios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

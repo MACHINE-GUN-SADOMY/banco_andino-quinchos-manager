@@ -31,12 +31,9 @@
             </a>
         </div>
 
-        <!-- MENSAJES -->
         <p th:if="${msg}" style="color:green; margin-top: 4px;" th:text="${msg}"></p>
         <p th:if="${error}" style="color:red; margin-top: 4px;" th:text="${error}"></p>
 
-        <!-- FORMULARIO: REGISTRAR ACCIÓN MANUAL -->
-        <!-- LISTADO DE BITACORA -->
         <h3 class="mt-4">Registros recientes</h3>
 
         <p th:if="${#lists.isEmpty(registros)}" style="margin-top: 8px;">

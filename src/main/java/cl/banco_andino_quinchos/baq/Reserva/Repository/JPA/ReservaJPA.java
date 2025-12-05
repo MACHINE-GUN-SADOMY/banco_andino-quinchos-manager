@@ -15,17 +15,10 @@ public class ReservaJPA {
     private Integer id;
 
     @Column(nullable = false)
-<<<<<<< HEAD
     private java.time.LocalDateTime fechaInicio;
 
     @Column(nullable = false)
     private java.time.LocalDateTime fechaFin;
-=======
-    private LocalDateTime fechaInicio;
-
-    @Column(nullable = false)
-    private LocalDateTime fechaFin;
->>>>>>> 0bcdbe79853ecefe228c945a5352bf4ecaff9988
 
     @Column(nullable = false)
     private String estado;
@@ -33,7 +26,6 @@ public class ReservaJPA {
     @Column(nullable = false)
     private Boolean aprobado;
 
-<<<<<<< HEAD
     @ManyToOne @JoinColumn(name = "id_usuario", nullable = false)
     private UsuarioJPA usuario;
 
@@ -42,11 +34,4 @@ public class ReservaJPA {
 
     @Column(nullable = true)
     private String motivo;
-=======
-    @ManyToOne(optional = false) @JoinColumn(name = "id_quincho")
-    private QuinchoJPA idQuincho;
-
-    @ManyToOne(optional = false) @JoinColumn(name = "id_usuario")
-    private UsuarioJPA idUsuario;
->>>>>>> 0bcdbe79853ecefe228c945a5352bf4ecaff9988
 }

@@ -28,16 +28,13 @@
             Nuevo quincho
         </a>
 
-        <!-- Mensajes de feedback -->
         <p th:if="${msg}" style="color: green; margin-top: 8px;" th:text="${msg}"></p>
         <p th:if="${error}" style="color: red; margin-top: 8px;" th:text="${error}"></p>
 
-        <!-- Si no hay quinchos -->
         <p th:if="${#lists.isEmpty(quinchos)}">
             No hay quinchos registrados.
         </p>
 
-        <!-- Tabla de quinchos -->
         <table th:if="${!#lists.isEmpty(quinchos)}" style="width: 100%; border-collapse: collapse; margin-top: 12px;">
             <thead>
             <tr>
@@ -55,7 +52,6 @@
                 <td th:text="${q.nombre}"></td>
                 <td th:text="${q.capacidad}"></td>
 
-                <!-- Badge de disponibilidad -->
                 <td>
                     <span class="badge"
                           th:classappend="${q.disponibilidad} ? ' badge-aprobada' : ' badge-rechazada'"
@@ -65,7 +61,6 @@
 
                 <td th:text="${q.ubicacion != null ? q.ubicacion : 'Sin ubicación'}"></td>
 
-                <!-- ACCIONES -->
                 <td>
                     <form th:action="@{'/admin/quinchos/' + ${q.id} + '/estado'}"
                           method="post"
@@ -77,7 +72,6 @@
                         </button>
                     </form>
 
-                    <!-- EDITAR -->
                     <a th:href="@{'/admin/quinchos/' + ${q.id} + '/editar'}"
                        class="btn btn-secondary"
                        style="margin-right:6px;">

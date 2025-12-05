@@ -11,11 +11,7 @@ public class UsuarioJPA {
     private Integer id;
 
     @Column(nullable = false, unique = true)
-<<<<<<< HEAD
     private String nombre;
-=======
-    private String email;
->>>>>>> 0bcdbe79853ecefe228c945a5352bf4ecaff9988
 
     @Column(nullable = false)
     private String correo;

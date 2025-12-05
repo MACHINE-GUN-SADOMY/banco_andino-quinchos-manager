@@ -17,27 +17,17 @@ public class BitacoraJPA {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
-<<<<<<< HEAD
     private UsuarioJPA usuario;
 
     @Column(nullable = true)
     private String tipoAccion;
-=======
-    private UsuarioJPA idUsuario;
->>>>>>> 0bcdbe79853ecefe228c945a5352bf4ecaff9988
 
     @Column(nullable = false, length = 200)
     private String accion;
 
-<<<<<<< HEAD
     @Column
     private String detalle;
 
     @Column(nullable = false)
     private LocalDateTime fecha;
-=======
-    @Column(nullable = false)
-    private LocalDateTime fecha;
-
->>>>>>> 0bcdbe79853ecefe228c945a5352bf4ecaff9988
 }

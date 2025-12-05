@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "04a538c5-ad91-4054-915f-980b7917b3f3",
+		"name": "Quincho-Controller",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44411688",
+		"_collection_link": "https://nigger-5787.postman.co/workspace/Banco-Andino~3be4b7b2-441d-4b6f-a9bc-882d9695f17d/collection/44411688-04a538c5-ad91-4054-915f-980b7917b3f3?action=share&source=collection_link&creator=44411688"
+	},
+	"item": [
+		{
+			"name": "Listar Todos los Quinchos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/quinchos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"quinchos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Todos los Quinchos Activos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/quinchos?soloActivos=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"quinchos"
+					],
+					"query": [
+						{
+							"key": "soloActivos",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Quincho Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/quinchos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"quinchos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Quincho",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Quincho Principal\",\r\n  \"descripcion\": \"Quincho techado para 20 personas\",\r\n  \"capacidad\": 20,\r\n  \"activo\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/quinchos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"quinchos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cambiar Estado Quincho",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Quincho Principal\",\r\n  \"descripcion\": \"Quincho techado para 20 personas\",\r\n  \"capacidad\": 20,\r\n  \"activo\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/quinchos/1/estado?activo=false",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"quinchos",
+						"1",
+						"estado"
+					],
+					"query": [
+						{
+							"key": "activo",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar Quincho Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Quincho A Actualizado\",\r\n  \"descripcion\": \"Nuevo quincho renovado\",\r\n  \"capacidad\": 25,\r\n  \"activo\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/quinchos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"quinchos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Usuario por Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Editado\",\r\n  \"correo\": \"juan@andino.cl\",\r\n  \"rol\": \"ADMIN\",\r\n  \"activo\": true,\r\n  \"password\": \"abcd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/usuarios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
